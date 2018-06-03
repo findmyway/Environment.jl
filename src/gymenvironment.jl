@@ -1,3 +1,7 @@
+using PyCall
+
+@pyimport gym
+
 struct GymEnv <: AbstractEnvironment 
     name:: String
     action_space
@@ -9,7 +13,7 @@ end
 function GymEnv(name::String)
     pygymenv = nothing
     try
-        gymenv = gym[:make](name)
+        pygymenv = gym.make(name)
     catch e
         error("Error when initializing [$name]\n$e")
     end
