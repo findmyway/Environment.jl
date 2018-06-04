@@ -2,7 +2,7 @@ module Environment
 
 include("space/Space.jl")
 using .Space
-export Space
+export BoxSpace, DiscreteSpace, MultiBinarySpace, MultiDiscreteSpace, gymspace2jlspace, sample
 
 include("abstractenvironment.jl")
 include("gymenvironment.jl")
