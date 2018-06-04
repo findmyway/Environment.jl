@@ -8,8 +8,8 @@ Get a random sample from `s`.
 function sample end
 
 """
-    contains(s::AbstractSpace, x)
+    occursin(s::AbstractSpace, x)
 
 Return wheather `x` is a valid sample in space `s`.
 """
-function contains end
+function occursin end

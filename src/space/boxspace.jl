@@ -29,6 +29,6 @@ BoxSpace(low::Array{<:Number}, high::Array{<:Number}) = size(low) == size(high) 
 
 sample(s::BoxSpace) = map((l, h) -> l + rand() * (h - l), s.low, s.high)
 
-contains(s::BoxSpace, xs::Array{<:Number}) = size(s) == size(xs) && 
+occursin(xs::Array{<:Number}, s::BoxSpace) = size(s) == size(xs) && 
     all(map((a, b, c) -> a ≤ b ≤ c, s.low, xs, s.high))
-contains(s::BoxSpace, x::Number) = all(map((l, h) -> l ≤ x ≤ h, s.low, s.high))
+occursin(x::Number, s::BoxSpace) = all(map((l, h) -> l ≤ x ≤ h, s.low, s.high))
