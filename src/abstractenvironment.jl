@@ -14,3 +14,10 @@ function close! end
 
 "Set the random seed of an environment"
 function seed! end
+
+"get the current state of an environment"
+function get_state end
+
+function is_end end
+
+function get_reward end

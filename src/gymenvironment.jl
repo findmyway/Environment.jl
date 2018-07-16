@@ -6,7 +6,7 @@ struct GymEnv <: AbstractEnvironment
     name::String
     action_space
     observation_space
-    reward_range
+    state::PyObject
     pygymenv
 end
 
@@ -26,7 +26,7 @@ function GymEnv(name::String)
     GymEnv(name,
            gymspace2jlspace(pygymenv[:action_space]),
            gymspace2jlspace(pygymenv[:observation_space]),
-           pygymenv[:reward_range],
+           PyNULL(),
            pygymenv)
 end
 
@@ -35,8 +35,16 @@ end
 
 `action` should be a valid sample in `env.action_space`.
 """
-step!(env::GymEnv, action) = env.pygymenv[:step](action)
+function step!(env::GymEnv, action) 
+    pycall!(env.state, env.pygymenv[:step], PyVector, action)
+end
+
 close!(env::GymEnv) = env.pygymenv[:close]()
 seed!(env::GymEnv, seed=nothing) = env.pygymenv[:seed](seed)
 reset!(env::GymEnv) = env.pygymenv[:reset]()
 render(env::GymEnv, mode="human") = env.pygymenv[:render](mode)
+action_space(env::GymEnv) = env.action_space
+observation_space(env::GymEnv) = env.observation_space
+get_state(env::GymEnv) = env.state[1]
+get_reward(env::GymEnv) = env.state[2]
+is_end(env::GymEnv) = env.state[3]

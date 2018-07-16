@@ -1,8 +1,7 @@
-authors = ["TianJun <tianjun@wisetechai.com>"]
 name = "Environment"
 uuid = "5ac68cc6-6726-11e8-159c-0944c8fe8061"
+authors = ["TianJun <tianjun@wisetechai.com>"]
 version = "0.1.0"
 
 [deps]
-MacroTools = "1914dd2f-81c6-5fcd-8719-6d5c9610ff09"
 PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
